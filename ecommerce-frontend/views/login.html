@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="login-html">
 
 <head>
     <meta charset="UTF-8">
@@ -10,14 +10,17 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="card login-card flex column gap20">
-            <span class="login-span">Login</span>
-            <div class="login-input-wrapper flex column gap10">
-                <label for="" class="label-title">email</label>
-                <input type="text">
-                <label for="" class="label-title">password</label>
-                <input type="password">
+    <div class="container login-container">
+        <div class="content login-wrapper">
+            <div class="card login-card flex column gap20 c-gray j-space-bt">
+                <span class="login-span">Login</span>
+                <div class="login-input-wrapper flex column gap10">
+                    <label for="" class="label">email</label>
+                    <input type="text" class="input">
+                    <label for="" class="label">password</label>
+                    <input type="password" class="input">
+                    <button class="btn login-btn" id="login-btn">Login</button>
+                </div>
             </div>
         </div>
     </div>

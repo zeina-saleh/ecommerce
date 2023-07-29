@@ -11,11 +11,48 @@ body {
     background-color: #FFFAFA;
 }
 
-.card-product {
+/* products.html */
+.product-card {
     height: 200px;
     width: 175px;
 }
 
-.card-product:hover {
+.product-card:hover {
     border-color: #D10024;
 }
+
+/* login.html */
+.login-html {
+    background-color: #2A2B2A;
+}
+
+.login-container {
+    background-color: #2A2B2A;
+}
+
+.login-wrapper {
+    justify-content: center;
+}
+
+.login-card {
+    border: solid 3px #D10024;
+    border-radius: 8px;
+    height: 350px;
+    width: 250px;
+    padding: 32px;
+}
+
+.login-span {
+    letter-spacing: 2px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.login-input-wrapper{
+    height: 80%;
+}
+
+.login-btn{
+    margin-top: 20px;
+}
+

@@ -43,6 +43,18 @@
     width: 100%;
 }
 
+.c-white{
+    color: #FFFAFA;
+}
+
+.c-gray {
+    color: #2A2B2A;
+}
+
+.c-red {
+    color: #D10024;
+}
+
 .b-circle {
     border-radius: 100%;
     border: #ebedef 1px solid;
@@ -131,4 +143,35 @@
 
 .product-title {
     color: #2A2B2A;
+}
+
+.label {
+    color: #2A2B2A;
+    padding: 5px;
+    font-size: 20px;
+}
+
+.input {
+    outline: none;
+    border: 2px solid #D10024;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: none;
+}
+
+.input:hover {
+    filter: brightness(90%);
+}
+
+.btn {
+    font-family: "Google Sans",'Roboto',Arial,sans-serif;
+    background-color: #D10024;
+    color: #FFFAFA;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn:hover{
+    scale: 1.2;
 }
