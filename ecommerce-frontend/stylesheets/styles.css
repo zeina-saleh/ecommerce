@@ -38,7 +38,7 @@ body {
     border: solid 3px #D10024;
     border-radius: 8px;
     height: 350px;
-    width: 250px;
+    width: 300px;
     padding: 32px;
 }
 
@@ -54,5 +54,24 @@ body {
 
 .login-btn{
     margin-top: 20px;
+}
+
+.register-link {
+    text-align: center;
+    text-decoration: none;
+    color: #D10024;
+}
+
+.register-link:hover {
+    scale: 1.1;
+}
+
+/* register card */
+.register-card {
+    border: solid 3px #D10024;
+    border-radius: 8px;
+    height: 450px;
+    width: 300px;
+    padding: 32px;
 }
 

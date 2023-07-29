@@ -133,7 +133,7 @@
 }
 
 .card {
-    border: #D8E2DC 1px solid;
+    border: #D8E2DC 2px solid;
     background-color: #FFFAFA;
     display: flex;
     flex-direction: column;
@@ -148,7 +148,7 @@
 .label {
     color: #2A2B2A;
     padding: 5px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .input {
@@ -157,10 +157,11 @@
     border-radius: 5px;
     padding: 5px;
     background-color: none;
+    font-size: 20px;
 }
 
 .input:hover {
-    filter: brightness(110%);
+    border-color: #ff3355;
 }
 
 .btn {
@@ -173,5 +174,5 @@
 }
 
 .btn:hover{
-    scale: 1.2;
+   filter: brightness(110%);
 }

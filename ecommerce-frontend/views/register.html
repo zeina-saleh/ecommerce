@@ -6,21 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ecommerce-frontend/stylesheets/utilities.css">
     <link rel="stylesheet" href="/ecommerce-frontend/stylesheets/styles.css">
-    <title>Login</title>
+    <title>Register</title>
 </head>
 
 <body>
     <div class="container login-container">
         <div class="content login-wrapper">
-            <div class="card login-card flex column gap20 c-gray j-space-bt">
-                <span class="login-span">Login</span>
+            <div class="card register-card flex column gap20 c-gray j-space-bt">
+                <span class="login-span">Register</span>
                 <div class="login-input-wrapper flex column gap10">
+                    <label for="" class="label">name</label>
+                    <input type="text" class="input" id="name">
                     <label for="" class="label">email</label>
                     <input type="text" class="input" id="email">
                     <label for="" class="label">password</label>
                     <input type="password" class="input" id="password">
-                    <button class="btn login-btn" id="login-btn">Login</button>
-                    <a class="register-link" href="/ecommerce-frontend/views/register.html">don't have an account? Register</a>
+                    <button class="btn login-btn" id="register-btn">Register</button>
+                    <a class="register-link" href="/ecommerce-frontend/views/login.html">Already have an account? Login</a>
+
                 </div>
             </div>
         </div>
