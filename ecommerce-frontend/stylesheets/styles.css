@@ -14,8 +14,9 @@ body {
 
 /* products.html */
 .product-card {
-    height: 200px;
-    width: 175px;
+    height: 300px;
+    width: 200px;
+    padding: 20px;
 }
 
 .product-card:hover {
