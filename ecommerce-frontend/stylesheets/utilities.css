@@ -10,8 +10,20 @@
     justify-content: space-between;
 }
 
+.j-fend {
+    justify-content: flex-end;
+}
+
 .al-center {
     align-items: center;
+}
+
+.al-fstart{
+    align-items: flex-start;
+}
+
+.flex-end{
+    align-self: flex-end;
 }
 
 .gap10 {
@@ -62,6 +74,10 @@
     height: 48px;
 }
 
+.no-wrap{
+    flex-wrap: nowrap;
+}
+
 .make-icon {
     width: 32px;
     height: 32px;
@@ -69,6 +85,26 @@
 
 .bold {
     font-weight: bold;
+}
+
+.bg-white{
+    background-color: #FFFAFA;
+}
+
+.bg-red{
+    background-color: #D10024;
+}
+
+.title-span {
+    font-size: 16px;
+}
+
+.no-deco {
+    text-decoration: none;
+}
+
+.hidden {
+    display: none !important;
 }
 
 .upper-nav {
@@ -136,8 +172,6 @@
     border: #D8E2DC 2px solid;
     background-color: #FFFAFA;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 32px;
 }
 
@@ -148,7 +182,7 @@
 .label {
     color: #2A2B2A;
     padding: 5px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .input {
@@ -157,7 +191,7 @@
     border-radius: 5px;
     padding: 5px;
     background-color: none;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .input:hover {
@@ -171,8 +205,22 @@
     border: none;
     padding: 10px;
     border-radius: 5px;
+    font-size: 16px;
 }
 
 .btn:hover{
    filter: brightness(110%);
+}
+
+.textarea{
+    outline: none;
+    border: 2px solid #D10024;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: none;
+    font-size: 18px;
+}
+
+.textarea:hover{
+    border-color: #ff3355;
 }

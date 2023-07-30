@@ -4,6 +4,7 @@ html {
     scroll-behavior: smooth;
     box-sizing: border-box;
     font-family: "Google Sans",'Roboto',Arial,sans-serif;
+    color: #2A2B2A;
 }
 
 body {
@@ -75,3 +76,23 @@ body {
     padding: 32px;
 }
 
+/* admin panel */
+.panel-card{
+    height: 200px;
+    width: 200px;
+    border-radius: 20px;
+    background-color: #D10024;
+    border: none;
+}
+
+.div-i:hover {
+    scale: 1.5;
+}
+
+.form-label, .form-input {
+    width: 50%;
+}
+
+.form-btn{
+    width: 150px;
+}

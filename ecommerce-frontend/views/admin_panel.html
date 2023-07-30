@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/ecommerce-frontend/stylesheets/utilities.css">
+    <link rel="stylesheet" href="/ecommerce-frontend/stylesheets/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Admin Panel</title>
+</head>
+
+<body>
+    <!-- nav -->
+    <header>
+        <nav class="nav flex column width100">
+            <div class="upper-nav flex al-center j-space-bt">
+                <div class="nav-left"><img src="/ecommerce-frontend/assets/logo.svg" alt=""></div>
+                <div class="nav-middle"></div>
+                <div class="nav-right main-nav-links"><i class="fa-solid fa-cart-shopping"></i> Cart</div>
+            </div>
+        </nav>
+        <nav>
+            <div class="lower-nav width100 flex">
+                <div class="links-wrapper flex width al-center j-space-bt">
+                    <a href="" class="nav-links">Products</a>
+                    <a href="" class="nav-links">Categories</a>
+                    <a href="" class="nav-links">Info</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- admin options -->
+    <div class="container">
+        <div class="content">
+            <div class="flex column center gap10">
+                <div class="card panel-card flex center">
+                    <a href="" class="no-deco">
+                        <div class="div-i b-circle flex center bg-white">
+                            <i class="c-red fa-solid fa-plus fa-2xl"></i>
+                        </div>
+                    </a>
+                </div>
+                <span class="title-span c-gray">Add Product</span>
+            </div>
+            <div class="flex column center gap10">
+                <div class="card panel-card flex center">
+                    <a href="" class="no-deco">
+                        <div class="div-i b-circle flex center bg-white">
+                            <i class="c-red fa-solid fa-pen-to-square fa-2xl"></i>
+                        </div>
+                    </a>
+                </div>
+                <span class="title-span c-gray">Edit Product</span>
+            </div>
+            <div class="flex column center gap10">
+                <div class="card panel-card flex center">
+                    <a href="" class="no-deco">
+                        <div class="div-i b-circle flex center bg-white">
+                            <i class="c-red fa-solid fa-trash fa-2xl"></i>
+                        </div>
+                    </a>
+                </div>
+                <span class="title-span c-gray">Remove Product</span>
+            </div>
+        </div>
+    </div>
+    <!-- add product -->
+    <div class="container hidden" id="add-product">
+        <div class="content no-wrap">
+            <div class="card flex column width100 gap10">
+                <h3>Add Product</h3>
+                <div class="flex column width100 gap5">
+                    <div class="flex gap20">
+                        <label for="title" class="label form-label">Title</label>
+                        <label for="brand" class="label form-label">Brand</label>
+                    </div>
+                    <div class="flex gap20">
+                        <input type="text" class="input form-input" id="title">
+                        <input type="text" class="input form-input" id="brand">
+                    </div>
+                    <div class="flex gap20">
+                        <label for="price" class="label form-label">Price</label>
+                        <label for="qty" class="label form-label">Quantity</label>
+                    </div>
+                    <div class="flex gap20">
+                        <input type="text" class="input form-input" id="price">
+                        <input type="text" class="input form-input" id="qty">
+                    </div>
+                    <div class="flex gap20">
+                        <label for="screen" class="label form-label">Screen</label>
+                        <label for="battery" class="label form-label">Battery</label>
+                    </div>
+                    <div class="flex gap20">
+                        <input type="text" class="input form-input" id="screen">
+                        <input type="text" class="input form-input" id="battery">
+                    </div>
+                    <div class="flex gap20">
+                        <label for="" class="label form-label">Description</label>
+                    </div>
+                    <div class="flex gap20">
+                        <textarea id="desc" class="textarea width100"></textarea>
+                    </div>
+                </div>
+                <button class="btn form-btn" id="add-btn">Add</button>
+            </div>
+        </div>
+    </div>
+    <!-- Edit Product -->
+    <div class="container hidden" id="find-product">
+        <div class="content">
+            <div class="card flex column width100 al-fstart">
+                <h3>Enter product id:</h3>
+                <div class="flex width100 gap10">
+                    <input type="text" class="input form-input" id="title">
+                    <button class="btn form-btn" id="find-btn">Find</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container hidden" id="edit-product">
+        <div class="content no-wrap">
+            <div class="card flex column width100 gap10">
+                <h3>Edit Product</h3>
+                <div class="flex column width100 gap5">
+                    <div class="flex gap20">
+                        <label for="title" class="label form-label">Title</label>
+                        <label for="brand" class="label form-label">Brand</label>
+                    </div>
+                    <div class="flex gap20">
+                        <input type="text" class="input form-input" id="title">
+                        <input type="text" class="input form-input" id="brand">
+                    </div>
+                    <div class="flex gap20">
+                        <label for="price" class="label form-label">Price</label>
+                        <label for="qty" class="label form-label">Quantity</label>
+                    </div>
+                    <div class="flex gap20">
+                        <input type="text" class="input form-input" id="price">
+                        <input type="text" class="input form-input" id="qty">
+                    </div>
+                    <div class="flex gap20">
+                        <label for="screen" class="label form-label">Screen</label>
+                        <label for="battery" class="label form-label">Battery</label>
+                    </div>
+                    <div class="flex gap20">
+                        <input type="text" class="input form-input" id="screen">
+                        <input type="text" class="input form-input" id="battery">
+                    </div>
+                    <div class="flex gap20">
+                        <label for="" class="label form-label">Description</label>
+                    </div>
+                    <div class="flex gap20">
+                        <textarea id="desc" class="textarea width100"></textarea>
+                    </div>
+                </div>
+                <button class="btn form-btn">Submit Changes</button>
+            </div>
+        </div>
+    </div>
+    <!-- Remove Product -->
+    <div class="container hidden" id="remove-product">
+        <div class="content">
+            <div class="card flex column width100 al-fstart">
+                <h3>Enter product id:</h3>
+                <div class="flex width100 gap10">
+                    <input type="text" class="input form-input" id="title">
+                    <button class="btn form-btn" id="find-btn">Remove</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
