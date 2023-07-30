@@ -35,38 +35,32 @@
         <div class="content">
             <div class="flex column center gap10">
                 <div class="card panel-card flex center">
-                    <a href="" class="no-deco">
-                        <div class="div-i b-circle flex center bg-white">
-                            <i class="c-red fa-solid fa-plus fa-2xl"></i>
-                        </div>
-                    </a>
+                    <div class="div-i b-circle flex center bg-white" id="add-icon">
+                        <i class="c-red fa-solid fa-plus fa-2xl"></i>
+                    </div>
                 </div>
                 <span class="title-span c-gray">Add Product</span>
             </div>
             <div class="flex column center gap10">
                 <div class="card panel-card flex center">
-                    <a href="" class="no-deco">
-                        <div class="div-i b-circle flex center bg-white">
-                            <i class="c-red fa-solid fa-pen-to-square fa-2xl"></i>
-                        </div>
-                    </a>
+                    <div class="div-i b-circle flex center bg-white" id="edit-icon">
+                        <i class="c-red fa-solid fa-pen-to-square fa-2xl"></i>
+                    </div>
                 </div>
                 <span class="title-span c-gray">Edit Product</span>
             </div>
             <div class="flex column center gap10">
                 <div class="card panel-card flex center">
-                    <a href="" class="no-deco">
-                        <div class="div-i b-circle flex center bg-white">
-                            <i class="c-red fa-solid fa-trash fa-2xl"></i>
-                        </div>
-                    </a>
+                    <div class="div-i b-circle flex center bg-white" id="del-icon">
+                        <i class="c-red fa-solid fa-trash fa-2xl"></i>
+                    </div>
                 </div>
                 <span class="title-span c-gray">Remove Product</span>
             </div>
         </div>
     </div>
     <!-- add product -->
-    <div class="container hidden" id="add-product">
+    <div class="container hidden" id="add-form">
         <div class="content no-wrap">
             <div class="card flex column width100 gap10">
                 <h3>Add Product</h3>
@@ -107,10 +101,10 @@
         </div>
     </div>
     <!-- Edit Product -->
-    <div class="container hidden" id="find-product">
+    <div class="container hidden" id="find-form">
         <div class="content">
             <div class="card flex column width100 al-fstart">
-                <h3>Enter product id:</h3>
+                <h3>Enter product id to edit:</h3>
                 <div class="flex width100 gap10">
                     <input type="text" class="input form-input" id="title">
                     <button class="btn form-btn" id="find-btn">Find</button>
@@ -118,7 +112,7 @@
             </div>
         </div>
     </div>
-    <div class="container hidden" id="edit-product">
+    <div class="container hidden" id="edit-form">
         <div class="content no-wrap">
             <div class="card flex column width100 gap10">
                 <h3>Edit Product</h3>
@@ -159,17 +153,18 @@
         </div>
     </div>
     <!-- Remove Product -->
-    <div class="container hidden" id="remove-product">
+    <div class="container hidden" id="del-form">
         <div class="content">
             <div class="card flex column width100 al-fstart">
-                <h3>Enter product id:</h3>
+                <h3>Enter product id to remove:</h3>
                 <div class="flex width100 gap10">
                     <input type="text" class="input form-input" id="title">
-                    <button class="btn form-btn" id="find-btn">Remove</button>
+                    <button class="btn form-btn" id="del-btn">Remove</button>
                 </div>
             </div>
         </div>
     </div>
+    <script src="/ecommerce-frontend/scripts/script.js"></script>
 </body>
 
 </html>
