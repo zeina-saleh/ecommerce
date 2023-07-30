@@ -9,3 +9,5 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
 });
+
+Route::controller([AdminController::class, "addProduct"]);
