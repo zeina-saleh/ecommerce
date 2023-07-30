@@ -1,14 +1,17 @@
 
 
-const login_btn = document.getElementById('login-btn')
+const register_btn = document.getElementById('register-btn')
+const name_input = document.getElementById('name')
 const email_input = document.getElementById('email')
 const password_input = document.getElementById('password')
 
-login_btn.addEventListener('click', async function(){
+register_btn.addEventListener('click', async function(){
+    user_name = name_input.value
     email = email_input.value
     password = password_input.value
 
     formdata = new FormData()
+    formdata.append('name', user_name)
     formdata.append('email', email)
     formdata.append('password', password)
 
@@ -17,7 +20,7 @@ login_btn.addEventListener('click', async function(){
         body: formdata
     }
 
-    const response = await fetch('http://127.0.0.1:8000/api/login', options)
+    const response = await fetch('http://127.0.0.1:8000/api/register', options)
     const json = response.json()
     console.log(json)
 })

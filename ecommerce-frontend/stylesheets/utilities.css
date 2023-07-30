@@ -181,7 +181,9 @@
 .label {
     color: #2A2B2A;
     padding: 5px;
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 2px;
 }
 
 .input {
@@ -190,7 +192,7 @@
     border-radius: 5px;
     padding: 5px;
     background-color: none;
-    font-size: 18px;
+    font-size: 14px;
 }
 
 .input:hover {
