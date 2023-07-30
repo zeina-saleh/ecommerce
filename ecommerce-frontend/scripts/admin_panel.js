@@ -38,15 +38,16 @@ del_icon.addEventListener('click', function () {
 async function findProduct(product_id) {
     if (product_id.length != 0) {
         let formdata = new FormData()
-        formdata.append('id', product_id)
+        formdata.append('product_id', product_id)
         let options = {
             method: 'POST',
             body: formdata
         }
         // to be filled
         try {
-            const response = await fetch('', options)
+            const response = await fetch('http://127.0.0.1:8000/api/findproduct', options)
             const json = await response.json()
+            console.log(json)
             return json
         } catch (e) {
             console.log('failed to fetch', e)
@@ -65,7 +66,7 @@ function fillEditForm(json) {
     const description = document.getElementById('edit-desc')
 
     title_input.value = json.title
-    brand_input.value = json.brand
+    brand_input.value = json.brand_id
     price_input.value = json.price
     qty_input.value = json.qty
     screen_input.value = json.screen
@@ -79,15 +80,24 @@ const find_btn = document.getElementById('find-btn')
 find_btn.addEventListener('click', async function () {
     let product_id = edit_input.value
     find_btn.disabled = true;
+    
     if (product_id != "") {
-        const product = findProduct(product_id)
-        if (product) {
-            // hide search form
-            hideUnhideElement(find_form)
-            // show edit form
-            hideUnhideElement(edit_form)
-            fillEditForm(product)
-        }
+        let formdata = new FormData()
+        formdata.append('product_id', product_id)
+
+        fetch('http://127.0.0.1:8000/api/findproduct', {
+            method: 'POST',
+            body: formdata,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    hideUnhideElement(find_form)
+                    hideUnhideElement(edit_form)
+                    fillEditForm(data.product)
+                }
+            })
+            .catch(error => console.log('error', error));
     } else {
         edit_input.value = 'Product not Found'
     }
@@ -95,8 +105,6 @@ find_btn.addEventListener('click', async function () {
 
 // function to delete product
 async function deleteProduct(product_id) {
-
-
 
     let formdata = new FormData()
     formdata.append('id', product_id)
@@ -151,18 +159,18 @@ const add_btn = document.getElementById('add-btn')
 // function to show add form
 add_btn.addEventListener('click', async function () {
     const title = document.getElementById('title').value
-    const brand = document.getElementById('brand').value
     const price = document.getElementById('price').value
     const qty = document.getElementById('qty').value
+    const brand = document.getElementById('brand').value
     const screen = document.getElementById('screen').value
     const battery = document.getElementById('battery').value
     const desc = document.getElementById('desc').value
 
     let formdata = new FormData()
     formdata.append('title', title)
-    formdata.append('brand', brand)
     formdata.append('price', price)
     formdata.append('qty', qty)
+    formdata.append('brand_id', brand)
     formdata.append('screen', screen)
     formdata.append('battery', battery)
     formdata.append('description', desc)
@@ -171,11 +179,11 @@ add_btn.addEventListener('click', async function () {
         method: 'POST',
         body: formdata
     }
-    // to be filled
+
     try {
-        const response = await fetch('', options)
+        const response = await fetch('http://127.0.0.1:8000/api/addproduct', options)
         const json = await response.json()
-        return json
+        console.log(json)
     } catch (e) {
         console.log('failed to fetch', e)
     }

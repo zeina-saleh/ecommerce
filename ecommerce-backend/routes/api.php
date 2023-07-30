@@ -12,3 +12,4 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::post('/addproduct', [AdminController::class, "addProduct"]);
+Route::post('/findproduct', [AdminController::class, "findProduct"]);
