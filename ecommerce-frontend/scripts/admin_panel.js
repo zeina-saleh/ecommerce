@@ -9,6 +9,10 @@ const edit_form = document.getElementById('edit-form')
 const del_form = document.getElementById('del-form')
 const del_card = document.getElementById('del-card')
 
+const edit_input = document.getElementById('find-input')
+const del_input = document.getElementById('del-input')
+const consent = document.getElementById('consent')
+
 // function to  toggle hidden and flex classes
 function hideUnhideElement(element) {
     element.classList.toggle('hidden')
@@ -20,9 +24,14 @@ add_icon.addEventListener('click', function () {
 })
 edit_icon.addEventListener('click', function () {
     hideUnhideElement(find_form)
+    edit_input.value = ''
+    find_btn.disabled = false
 })
 del_icon.addEventListener('click', function () {
     hideUnhideElement(del_form)
+    del_input.value = ''
+    del_btn.disabled = false
+    consent.innerHTML = ''
 })
 
 // function to find product by id
@@ -53,6 +62,7 @@ function fillEditForm(json) {
     const qty_input = document.getElementById('edit-qty')
     const screen_input = document.getElementById('edit-screen')
     const battery_input = document.getElementById('edit-battery')
+    const description = document.getElementById('edit-desc')
 
     title_input.value = json.title
     brand_input.value = json.brand
@@ -60,10 +70,10 @@ function fillEditForm(json) {
     qty_input.value = json.qty
     screen_input.value = json.screen
     battery_input.value = json.battery
+    description.value = json.description
 }
 
 const find_btn = document.getElementById('find-btn')
-const edit_input = document.getElementById('find-input')
 
 // function to show edit form and get product id to be edited from user
 find_btn.addEventListener('click', async function () {
@@ -72,25 +82,40 @@ find_btn.addEventListener('click', async function () {
     if (product_id != "") {
         const product = findProduct(product_id)
         if (product) {
-            edit_input.value = 'Found'
+            // hide search form
             hideUnhideElement(find_form)
+            // show edit form
             hideUnhideElement(edit_form)
             fillEditForm(product)
-            find_btn.disabled = false
-            edit_input.value = ""
         }
     } else {
         edit_input.value = 'Product not Found'
     }
 })
 
-function deleteProduct(id) {
+// function to delete product
+async function deleteProduct(product_id) {
+
+
+
+    let formdata = new FormData()
+    formdata.append('id', product_id)
+
+    let options = {
+        method: 'POST',
+        body: formdata
+    }
     // to be filled
-    console.log("deleted", id)
+    try {
+        const response = await fetch('', options)
+        const json = await response.json()
+        return json
+    } catch (e) {
+        console.log('failed to fetch', e)
+    }
 }
 
 const del_btn = document.getElementById('del-btn')
-const del_input = document.getElementById('del-input')
 
 // function to show delete form and get user consent
 del_btn.addEventListener('click', async function () {
@@ -103,16 +128,16 @@ del_btn.addEventListener('click', async function () {
             del_input.value = 'Found'
 
             // user consent
-            const consent = document.createElement('h4')
-            consent.innerText = 'Are you sure you want to remove product?(y/n)'
-            del_card.appendChild(consent)
-            const consent_input = document.createElement('input')
-            consent_input.classList.add('input')
-            del_card.appendChild(consent_input)
+            consent.innerHTML = `<h4>Are you sure you want to remove product?(y/n)</h4>
+            <input type="text" class="input" id="consent_input">`
+            consent_input = document.getElementById('consent_input')
 
             // if yes delete product otherwise hide delete form
             consent_input.addEventListener('change', function () {
-                if (consent_input.value == 'y' || consent_input.value == 'Y') { deleteProduct(product_id); }
+                if (consent_input.value == 'y' || consent_input.value == 'Y') {
+                    deleteProduct(product_id);
+                    consent.innerHTML = '<h4> Deleted </h4>'
+                }
                 else { hideUnhideElement(del_form) }
             })
         }
