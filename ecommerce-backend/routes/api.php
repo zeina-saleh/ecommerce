@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\AdminController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');
@@ -10,4 +11,4 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::controller([AdminController::class, "addProduct"]);
+Route::post('/addproduct', [AdminController::class, "addProduct"]);
