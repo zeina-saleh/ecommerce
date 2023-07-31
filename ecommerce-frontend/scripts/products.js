@@ -4,7 +4,7 @@ function renderProducts(products) {
     let container = document.getElementById('product-wrapper')
     products.forEach((item) => {
         let product_div = document.createElement('div')
-        
+
         product_div.innerHTML = `
         <div class="card column product-card al-center gap10">
         <img id="img" src="/ecommerce-frontend/assets/default.png" alt="">
@@ -15,7 +15,16 @@ function renderProducts(products) {
             <button id="cart_btn" class="btn">Add to Cart</button>
         </div></div>`;
         container.appendChild(product_div)
-    });
+
+        let hover_div = document.createElement('div')
+            hover_div.innerHTML = `
+        <div class="hover-div card column center gap10">
+        <span id="title" class="product-title">${item.screen}</span>
+        <span id="price" class="products-price">${item.battery}</span>
+        <span id="price" class="products-price">${item.description}</span>
+        </div>`;
+        product_div.appendChild(hover_div)
+        })
 }
 
 window.onload = async () => {
@@ -31,3 +40,8 @@ window.onload = async () => {
         console.log("failed to fetch", e)
     }
 }
+
+const logout_link = document.getElementById('logout-span')
+logout_link.addEventListener('click', function(){
+
+})

@@ -19,17 +19,6 @@ body {
     font-weight: 400;
 }
 
-/* products.html */
-.product-card {
-    height: 300px;
-    width: 200px;
-    padding: 20px;
-}
-
-.product-card:hover {
-    border-color: #D10024;
-}
-
 /* login.html */
 .login-html {
     background-color: #2A2B2A;
@@ -107,4 +96,35 @@ body {
 
 h4{
     color: #D10024;
+}
+
+/* products.html */
+.product-card {
+    height: 300px;
+    width: 200px;
+    padding: 20px;
+}
+
+.product-card:hover {
+    border-color: #D10024;
+}
+
+/* hover-div */
+.hover-div {
+    height: 300px;
+    width: 200px;
+    padding: 20px;
+    position: relative;
+    z-index: 3;
+    opacity: 0;
+    background-color: #FFFAFA;
+    transform: translateY(-344px);
+}
+
+.product-card:hover {
+    opacity: 0;
+}
+
+.hover-div:hover {
+    opacity: 1;
 }
