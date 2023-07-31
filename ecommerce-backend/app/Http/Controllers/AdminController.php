@@ -27,8 +27,12 @@ class AdminController extends Controller
         return json_encode(["product" => $product]);
     }
 
-    function findProduct(Request $request){
-        $product = Product::find($request->product_id);
+    function findProduct($id){
+        $product = Product::find($id);
         return json_encode(["product" => $product]);
+    }
+
+    function deleteProduct($id){
+        Product::where('id', $id)->delete();
     }
 }

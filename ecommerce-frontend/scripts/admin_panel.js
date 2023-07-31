@@ -13,6 +13,11 @@ const edit_input = document.getElementById('find-input')
 const del_input = document.getElementById('del-input')
 const consent = document.getElementById('consent')
 
+// function to reload
+function reload(){
+    window.location.reload()
+}
+
 // function to  toggle hidden and flex classes
 function hideUnhideElement(element) {
     element.classList.toggle('hidden')
@@ -37,15 +42,10 @@ del_icon.addEventListener('click', function () {
 
 // function to find product by id
 async function findProduct(product_id) {
+    let id = product_id
     if (product_id.length != 0) {
-        let formdata = new FormData()
-        formdata.append('product_id', product_id)
-        let options = {
-            method: 'POST',
-            body: formdata
-        }
         try {
-            let response = await fetch('http://127.0.0.1:8000/api/findproduct', options)
+            let response = await fetch(`http://127.0.0.1:8000/api/findproduct/${id}`)
             let json = await response.json()
             console.log()
             return json.product
@@ -67,6 +67,7 @@ function updateProduct(json) {
     const screen_input = document.getElementById('edit-screen')
     const battery_input = document.getElementById('edit-battery')
     const description_input = document.getElementById('edit-desc')
+    const confirm =  document.getElementById('confirm-msg')
 
     title_input.value = json.title
     brand_input.value = json.brand_id
@@ -78,7 +79,7 @@ function updateProduct(json) {
     let product_id = json.id
 
     const edit_btn = document.getElementById('edit-btn')
-    edit_btn.addEventListener('click', async function(){
+    edit_btn.addEventListener('click', async function () {
 
         let title = title_input.value
         let brand = brand_input.value
@@ -104,6 +105,8 @@ function updateProduct(json) {
         }
 
         const response = await fetch(`http://127.0.0.1:8000/api/add_update_product/${product_id}`, options)
+        confirm.innerHTML = '<h4> Product Updated </h4>'
+        setTimeout(reload, 2000);
         console.log(response)
 
     })
@@ -133,16 +136,8 @@ find_btn.addEventListener('click', async function () {
 // function to delete product
 async function deleteProduct(product_id) {
 
-    let formdata = new FormData()
-    formdata.append('id', product_id)
-
-    let options = {
-        method: 'POST',
-        body: formdata
-    }
-    // to be filled
     try {
-        const response = await fetch('', options)
+        const response = await fetch(`http://127.0.0.1:8000/api/deleteproduct/${product_id}`)
         const json = await response.json()
         return json
     } catch (e) {
@@ -172,6 +167,8 @@ del_btn.addEventListener('click', async function () {
                 if (consent_input.value == 'y' || consent_input.value == 'Y') {
                     deleteProduct(product_id);
                     consent.innerHTML = '<h4> Deleted </h4>'
+                    setTimeout(reload, 2000);
+
                 }
                 else { hideUnhideElement(del_form) }
             })
@@ -192,7 +189,7 @@ add_btn.addEventListener('click', async function () {
     const screen = document.getElementById('screen').value
     const battery = document.getElementById('battery').value
     const desc = document.getElementById('desc').value
-    // const confirm_msg = document.getElementById('confirmation-msg')
+    const confirm_msg = document.getElementById('confirmation-msg')
 
     let formdata = new FormData()
     formdata.append('title', title)
@@ -211,7 +208,8 @@ add_btn.addEventListener('click', async function () {
     try {
         const response = await fetch('http://127.0.0.1:8000/api/add_update_product', options)
         const json = await response.json()
-        // confirm_msg.innerHTML = `<h4> Product Added </h4>`
+        confirm_msg.innerHTML = `<h4> Product Added </h4>`
+        setTimeout(reload, 2000);
     } catch (e) {
         console.log('failed to fetch', e)
     }

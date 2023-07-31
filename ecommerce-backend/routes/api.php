@@ -12,5 +12,5 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 Route::post('/add_update_product/{id?}', [AdminController::class, "addOrUpdateProduct"]);
-Route::post('/findproduct', [AdminController::class, "findProduct"]);
-Route::post('/deleteproduct', [AdminController::class, "deleteProduct"]);
+Route::get('/findproduct/{id}', [AdminController::class, "findProduct"]);
+Route::get('/deleteproduct/{id}', [AdminController::class, "deleteProduct"]);
