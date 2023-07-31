@@ -55,4 +55,5 @@ class AdminController extends Controller
 
         return json_encode(["products" => $products]);
     }
+
 }

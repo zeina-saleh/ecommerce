@@ -122,5 +122,6 @@ window.onload = async () => {
 
 const logout_link = document.getElementById('logout-span')
 logout_link.addEventListener('click', function(){
-    
+    localStorage.removeItem('user_id')
+    window.location.href =  '/ecommerce-frontend/views/login.html'
 })

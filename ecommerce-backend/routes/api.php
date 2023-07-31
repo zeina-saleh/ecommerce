@@ -19,5 +19,5 @@ Route::get('/products/{id?}', [AdminController::class, "getProducts"]);
 
 Route::get('/get_cart_items/{id}', [UserController::class, "getCartItems"]);
 Route::post('/add_to_cart', [UserController::class, "addToCart"]);
-
+Route::get('/logout', [UserController::class], "logoutUser");
 
