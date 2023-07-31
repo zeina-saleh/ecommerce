@@ -38,6 +38,8 @@ class AuthController extends Controller
                 'type' => 'bearer',
             ]
         ]);
+
+        return json_encode(["id" => $user->id]);
     }
 
     public function register(Request $request)

@@ -19,6 +19,9 @@ login_btn.addEventListener('click', async function () {
 
     try {
         const response = await fetch('http://127.0.0.1:8000/api/login', options)
+        const json = await response.json()
+        const user_id = json.user.id
+        localStorage.setItem('user_id', user_id)
         window.location = '/ecommerce-frontend/views/products.html'
     }
     catch (error) {

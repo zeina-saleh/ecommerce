@@ -22,5 +22,6 @@ register_btn.addEventListener('click', async function(){
 
     const response = await fetch('http://127.0.0.1:8000/api/register', options)
     const json = response.json()
+    // window.location = '/ecommerce-frontend/views/login.html'
     console.log(json)
 })
