@@ -35,4 +35,15 @@ class AdminController extends Controller
     function deleteProduct($id){
         Product::where('id', $id)->delete();
     }
+
+    function getProducts($id = null){
+        if($id){
+            $products = Product::find($id);
+        }else{
+            $products = Product::all();
+        }
+        
+        return json_encode(["products" => $products]);
+    }
+
 }
