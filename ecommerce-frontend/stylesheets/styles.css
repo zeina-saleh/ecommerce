@@ -129,3 +129,21 @@ h4{
 .hover-div:hover {
     opacity: 1;
 }
+
+/* cart */
+
+.cart{
+    width: 200px;
+    height: 35vw;
+    z-index: 9;
+    position: absolute;
+    top:0;
+    right:0;
+    transform: translateY(104px);
+    padding: 10px;
+    color: #2A2B2A;
+}
+
+h3 {
+    margin-top: 5px;
+}

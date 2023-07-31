@@ -1,14 +1,20 @@
 
-function fillCart(items){
+function fillCart(items) {
     let cart_ul = document.getElementById('cart-list')
-    items.forEach((item) =>{
-    let cart_item = document.createElement('li')
-    cart_item.innerHTML = `${item.product_id}`
-
+    items.forEach((item) => {
+        let cart_item = document.createElement('div')
+        cart_item.innerHTML = `<div class="flex gap10">${item.product_id} <i class="fa-solid fa-minus main-nav-links" id="min_btn"></i></div>`
+        cart_ul.appendChild(cart_item);
+        
+        // let cart_btn = document.getElementById(`min_btn${item.id}`)
+        // cart_btn.addEventListener('click', function () {
+        //     console.log(item.id)
+        //     deleteFromCart(item.id)
+        // })
     })
 }
 
-async function addToCart(item_id){
+async function addToCart(item_id) {
     try {
         const user_id = localStorage.getItem('user_id')
         const product_id = item_id
@@ -48,7 +54,7 @@ function renderProducts(products) {
         container.appendChild(product_div)
 
         let hover_div = document.createElement('div')
-            hover_div.innerHTML = `
+        hover_div.innerHTML = `
         <div class="hover-div card column center gap10">
         <span id="title" class="product-title">${item.brand_id}</span>
         <span id="title" class="product-title">${item.screen}</span>
@@ -63,15 +69,24 @@ function renderProducts(products) {
         // })
 
         let cart_btn = document.getElementById(`cart_btn${item.id}`)
-        cart_btn.addEventListener('click', async function() {
+        cart_btn.addEventListener('click', function () {
             addToCart(item.id)
         })
 
-        })
+    })
 }
 
 window.onload = async () => {
 
+    admin_panel = document.getElementById('admin-panel')
+    admin_panel.addEventListener('click', () => { window.location.href = '/ecommerce-frontend/views/admin_panel.html'})
+    // check user type
+    if (localStorage.getItem('user_id')==2){
+        admin_panel.classList.remove('hidden')
+    }
+
+
+    // get products
     try {
         const response = await fetch('http://127.0.0.1:8000/api/products/')
         let json = await response.json()
@@ -83,9 +98,29 @@ window.onload = async () => {
         console.log("failed to fetch", e)
     }
 
+    // get cart items
+    const user_id = localStorage.getItem('user_id')
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/get_cart_items/${user_id}`)
+        const json = await response.json()
+        const items = json.items
+        console.log(items)
+        fillCart(items)
+    }
+    catch (e) {
+        console.log('failed to fetch', e)
+    }
+
+    // show cart
+    const cart_btn = document.getElementById('cart')
+    cart_btn.addEventListener('click', async function () {
+        const list = document.getElementById('cart-container')
+        list.classList.toggle("hidden")
+    })
+
 }
 
-// const logout_link = document.getElementById('logout-span')
-// logout_link.addEventListener('click', function(){
-
-// })
+const logout_link = document.getElementById('logout-span')
+logout_link.addEventListener('click', function(){
+    
+})

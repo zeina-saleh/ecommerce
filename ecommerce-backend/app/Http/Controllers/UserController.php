@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Cart;
+use App\Models\Product;
 
 class UserController extends Controller
 {
@@ -20,6 +21,11 @@ class UserController extends Controller
     function getCartItems($id){
         
         $items = Cart::where('user_id', $id)->get();
+            foreach ($items as $item) {
+                $product_id = $item->product_id;
+                $product = Product::find($product_id);
+                $item->product_id = $product->title;
+            }
         return json_encode(["items" => $items]);
     }
 }

@@ -18,9 +18,10 @@
                 <div class="nav-left"><img src="/ecommerce-frontend/assets/logo.svg" alt=""></div>
                 <div class="nav-middle"></div>
                 <div class="nav-right flex center gap20">
-                    <span class="admin-span main-nav-links">Admin Panel</span>
+                    <span class="admin-span main-nav-links hidden" id="admin-panel">Admin Panel</span>
                     <span class="logout-span main-nav-links">Logout</span>
-                    <i class="fa-solid fa-cart-shopping main-nav-links"><span class="main-nav-links cart-span">Cart</span></i>
+                    <div id="cart"><i class="fa-solid fa-cart-shopping main-nav-links"><span
+                                class="main-nav-links cart-span">Cart</span></i></div>
                 </div>
             </div>
         </nav>
@@ -35,8 +36,12 @@
         </nav>
     </header>
 
-    <div class="cart">
-        <ul class="cart_list" id="cart_list"></ul>
+    <div class="hidden" id="cart-container">
+        <div class="card cart column al-center">
+            <h3>Cart</h3>
+            <div class="cart-list" id="cart-list">
+            </div>
+        </div>
     </div>
 
     <!-- products -->
