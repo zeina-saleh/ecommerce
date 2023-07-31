@@ -7,8 +7,12 @@ use App\Models\Product;
 
 class AdminController extends Controller
 {
-    function addProduct(Request $request){
-        $product = new Product;
+    function addOrUpdateProduct(Request $request, $id = "add"){
+        if($id == "add"){
+            $product = new Product;
+        }else{
+            $product = Product::find($id);
+        }
 
         $product->title = $request->title;
         $product->price = $request->price;
@@ -17,7 +21,7 @@ class AdminController extends Controller
         $product->screen = $request->screen;
         $product->battery = $request->battery;
         $product->description = $request->description;
-        $product->image = $request->battery;
+        $product->image = $request->description;
         $product->save();
 
         return json_encode(["product" => $product]);
@@ -26,6 +30,5 @@ class AdminController extends Controller
     function findProduct(Request $request){
         $product = Product::find($request->product_id);
         return json_encode(["product" => $product]);
-
     }
 }

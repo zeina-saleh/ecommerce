@@ -62,7 +62,7 @@
     <!-- add product -->
     <div class="container hidden" id="add-form">
         <div class="content no-wrap">
-            <div class="card flex column width100 gap10">
+            <div class="card flex column width100 gap10" id="add-card">
                 <h3>Add Product</h3>
                 <div class="flex column width100 gap5">
                     <div class="flex gap20">
@@ -97,6 +97,7 @@
                     </div>
                 </div>
                 <button class="btn form-btn" id="add-btn">Add</button>
+                <div id="confirmation-msg"></div>
             </div>
         </div>
     </div>
@@ -148,7 +149,7 @@
                         <textarea id="edit-desc" class="textarea width100"></textarea>
                     </div>
                 </div>
-                <button class="btn form-btn">Submit Changes</button>
+                <button id="edit-btn" class="btn form-btn">Submit Changes</button>
             </div>
         </div>
     </div>

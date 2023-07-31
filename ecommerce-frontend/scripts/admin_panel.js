@@ -34,6 +34,7 @@ del_icon.addEventListener('click', function () {
     consent.innerHTML = ''
 })
 
+
 // function to find product by id
 async function findProduct(product_id) {
     if (product_id.length != 0) {
@@ -43,27 +44,29 @@ async function findProduct(product_id) {
             method: 'POST',
             body: formdata
         }
-        // to be filled
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/findproduct', options)
-            const json = await response.json()
-            console.log(json)
-            return json
+            let response = await fetch('http://127.0.0.1:8000/api/findproduct', options)
+            let json = await response.json()
+            console.log()
+            return json.product
         } catch (e) {
             console.log('failed to fetch', e)
         }
     } else return false
 }
 
-// function to fill edit form
-function fillEditForm(json) {
+
+// function to update product
+function updateProduct(json) {
+
+    // fill form
     const title_input = document.getElementById('edit-title')
     const brand_input = document.getElementById('edit-brand')
     const price_input = document.getElementById('edit-price')
     const qty_input = document.getElementById('edit-qty')
     const screen_input = document.getElementById('edit-screen')
     const battery_input = document.getElementById('edit-battery')
-    const description = document.getElementById('edit-desc')
+    const description_input = document.getElementById('edit-desc')
 
     title_input.value = json.title
     brand_input.value = json.brand_id
@@ -71,8 +74,42 @@ function fillEditForm(json) {
     qty_input.value = json.qty
     screen_input.value = json.screen
     battery_input.value = json.battery
-    description.value = json.description
+    description_input.value = json.description
+    let product_id = json.id
+
+    const edit_btn = document.getElementById('edit-btn')
+    edit_btn.addEventListener('click', async function(){
+
+        let title = title_input.value
+        let brand = brand_input.value
+        let price = price_input.value
+        let qty = qty_input.value
+        let screen = screen_input.value
+        let battery = battery_input.value
+        let description = description_input.value
+
+        let formdata = new FormData()
+        formdata.append("product_id", product_id);
+        formdata.append("title", title);
+        formdata.append("brand_id", brand);
+        formdata.append("price", price);
+        formdata.append("qty", qty);
+        formdata.append("screen", screen);
+        formdata.append("battery", battery);
+        formdata.append("description", description);
+
+        let options = {
+            method: "POST",
+            body: formdata
+        }
+
+        const response = await fetch(`http://127.0.0.1:8000/api/add_update_product/${product_id}`, options)
+        console.log(response)
+
+    })
+
 }
+
 
 const find_btn = document.getElementById('find-btn')
 
@@ -80,24 +117,14 @@ const find_btn = document.getElementById('find-btn')
 find_btn.addEventListener('click', async function () {
     let product_id = edit_input.value
     find_btn.disabled = true;
-    
-    if (product_id != "") {
-        let formdata = new FormData()
-        formdata.append('product_id', product_id)
 
-        fetch('http://127.0.0.1:8000/api/findproduct', {
-            method: 'POST',
-            body: formdata,
-        })
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    hideUnhideElement(find_form)
-                    hideUnhideElement(edit_form)
-                    fillEditForm(data.product)
-                }
-            })
-            .catch(error => console.log('error', error));
+    if (product_id != "") {
+        let product = await findProduct(product_id)
+        if (product) {
+            hideUnhideElement(find_form)
+            hideUnhideElement(edit_form)
+            updateProduct(product)
+        }
     } else {
         edit_input.value = 'Product not Found'
     }
@@ -165,6 +192,7 @@ add_btn.addEventListener('click', async function () {
     const screen = document.getElementById('screen').value
     const battery = document.getElementById('battery').value
     const desc = document.getElementById('desc').value
+    // const confirm_msg = document.getElementById('confirmation-msg')
 
     let formdata = new FormData()
     formdata.append('title', title)
@@ -181,9 +209,9 @@ add_btn.addEventListener('click', async function () {
     }
 
     try {
-        const response = await fetch('http://127.0.0.1:8000/api/addproduct', options)
+        const response = await fetch('http://127.0.0.1:8000/api/add_update_product', options)
         const json = await response.json()
-        console.log(json)
+        // confirm_msg.innerHTML = `<h4> Product Added </h4>`
     } catch (e) {
         console.log('failed to fetch', e)
     }

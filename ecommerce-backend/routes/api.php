@@ -11,5 +11,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
 });
 
-Route::post('/addproduct', [AdminController::class, "addProduct"]);
+Route::post('/add_update_product/{id?}', [AdminController::class, "addOrUpdateProduct"]);
 Route::post('/findproduct', [AdminController::class, "findProduct"]);
+Route::post('/deleteproduct', [AdminController::class, "deleteProduct"]);
