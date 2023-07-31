@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Brand;
 
 class AdminController extends Controller
 {
-    function addOrUpdateProduct(Request $request, $id = "add"){
-        if($id == "add"){
+    function addOrUpdateProduct(Request $request, $id = "add")
+    {
+        if ($id == "add") {
             $product = new Product;
-        }else{
+        } else {
             $product = Product::find($id);
         }
 
@@ -27,23 +29,30 @@ class AdminController extends Controller
         return json_encode(["product" => $product]);
     }
 
-    function findProduct($id){
+    function findProduct($id)
+    {
         $product = Product::find($id);
         return json_encode(["product" => $product]);
     }
 
-    function deleteProduct($id){
+    function deleteProduct($id)
+    {
         Product::where('id', $id)->delete();
     }
 
-    function getProducts($id = null){
-        if($id){
+    function getProducts($id = null)
+    {
+        if ($id) {
             $products = Product::find($id);
-        }else{
+        } else {
             $products = Product::all();
+            foreach ($products as $product) {
+                $brand_id = $product->brand_id;
+                $brand = Brand::find($brand_id);
+                $product->brand_id = $brand->brand_name;
+            }
         }
-        
+
         return json_encode(["products" => $products]);
     }
-
 }

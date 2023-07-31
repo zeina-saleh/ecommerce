@@ -109,9 +109,13 @@ h4{
     border-color: #D10024;
 }
 
+#cart_btn {
+    cursor: pointer;
+}
+
 /* hover-div */
 .hover-div {
-    height: 300px;
+    height: 235px;
     width: 200px;
     padding: 20px;
     position: relative;
@@ -119,10 +123,7 @@ h4{
     opacity: 0;
     background-color: #FFFAFA;
     transform: translateY(-344px);
-}
-
-.product-card:hover {
-    opacity: 0;
+    cursor: pointer;
 }
 
 .hover-div:hover {

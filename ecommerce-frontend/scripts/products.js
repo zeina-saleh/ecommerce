@@ -19,11 +19,32 @@ function renderProducts(products) {
         let hover_div = document.createElement('div')
             hover_div.innerHTML = `
         <div class="hover-div card column center gap10">
+        <span id="title" class="product-title">${item.brand_id}</span>
         <span id="title" class="product-title">${item.screen}</span>
         <span id="price" class="products-price">${item.battery}</span>
         <span id="price" class="products-price">${item.description}</span>
         </div>`;
         product_div.appendChild(hover_div)
+
+        // hover_div.addEventListener('click', function(){
+        //     localStorage.setItem('product_id', item.id)
+        //     window.location.href = '/ecommerce-frontend/views/admin_panel.html'
+        // })
+
+        let cart_btn = document.getElementById('cart_btn')
+        cart_btn.addEventListener('click', async function() {
+            try {
+                const response = await fetch('http://127.0.0.1:8000/api/products/')
+                let json = await response.json()
+                let products = json.products
+                console.log(json)
+                renderProducts(products);
+            }
+            catch (e) {
+                console.log("failed to fetch", e)
+            }
+        })
+
         })
 }
 
@@ -41,7 +62,7 @@ window.onload = async () => {
     }
 }
 
-const logout_link = document.getElementById('logout-span')
-logout_link.addEventListener('click', function(){
+// const logout_link = document.getElementById('logout-span')
+// logout_link.addEventListener('click', function(){
 
-})
+// })
