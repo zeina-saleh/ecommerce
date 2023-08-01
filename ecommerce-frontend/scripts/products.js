@@ -1,16 +1,30 @@
 
-function fillCart(items) {
-    let cart_ul = document.getElementById('cart-list')
+
+async function deleteFromCart(id, element) {
+    element.style.display = 'none'
+    console.log(id)
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/delete_from_cart/${id}`)
+        const json = await response.json()
+        return json
+    } catch (e) {
+        console.log('failed to fetch', e)
+    }
+
+}
+
+
+function fillCart(items, list) {
+    let cart_ul = document.getElementById(list)
     items.forEach((item) => {
         let cart_item = document.createElement('div')
-        cart_item.innerHTML = `<div class="flex gap10">${item.product_id} <i class="fa-solid fa-minus main-nav-links" id="min_btn"></i></div>`
+        cart_item.innerHTML = `<div class="flex gap10">${item.product_id} <i class="fa-solid fa-minus main-nav-links" id="min_btn${item.id}"></i></div>`
         cart_ul.appendChild(cart_item);
-        
-        // let cart_btn = document.getElementById(`min_btn${item.id}`)
-        // cart_btn.addEventListener('click', function () {
-        //     console.log(item.id)
-        //     deleteFromCart(item.id)
-        // })
+
+        let cart_btn = document.getElementById(`min_btn${item.id}`)
+        cart_btn.addEventListener('click', function () {
+            deleteFromCart(item.id, cart_item)
+        })
     })
 }
 
@@ -63,11 +77,6 @@ function renderProducts(products) {
         </div>`;
         product_div.appendChild(hover_div)
 
-        // hover_div.addEventListener('click', function(){
-        //     localStorage.setItem('product_id', item.id)
-        //     window.location.href = '/ecommerce-frontend/views/admin_panel.html'
-        // })
-
         let cart_btn = document.getElementById(`cart_btn${item.id}`)
         cart_btn.addEventListener('click', function () {
             addToCart(item.id)
@@ -79,9 +88,9 @@ function renderProducts(products) {
 window.onload = async () => {
 
     admin_panel = document.getElementById('admin-panel')
-    admin_panel.addEventListener('click', () => { window.location.href = '/ecommerce-frontend/views/admin_panel.html'})
+    admin_panel.addEventListener('click', () => { window.location.href = '/ecommerce-frontend/views/admin_panel.html' })
     // check user type
-    if (localStorage.getItem('user_id')==2){
+    if (localStorage.getItem('user_id') == 2) {
         admin_panel.classList.remove('hidden')
     }
 
@@ -105,7 +114,19 @@ window.onload = async () => {
         const json = await response.json()
         const items = json.items
         console.log(items)
-        fillCart(items)
+        fillCart(items, "cart-list")
+    }
+    catch (e) {
+        console.log('failed to fetch', e)
+    }
+
+    // get cart items
+    try {
+        const response = await fetch(`http://127.0.0.1:8000/api/get_wish_items/${user_id}`)
+        const json = await response.json()
+        const items = json.items
+        console.log(items)
+        fillCart(items, "wish-list")
     }
     catch (e) {
         console.log('failed to fetch', e)
@@ -121,7 +142,7 @@ window.onload = async () => {
 }
 
 const logout_link = document.getElementById('logout-span')
-logout_link.addEventListener('click', function(){
+logout_link.addEventListener('click', function () {
     localStorage.removeItem('user_id')
-    window.location.href =  '/ecommerce-frontend/views/login.html'
+    window.location.href = '/ecommerce-frontend/views/login.html'
 })

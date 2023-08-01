@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="/ecommerce-frontend/stylesheets/utilities.css">
     <link rel="stylesheet" href="/ecommerce-frontend/stylesheets/styles.css">
     <title>Document</title>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
 </head>
 
 <body>
@@ -22,6 +27,8 @@
                     <span class="logout-span main-nav-links" id="logout-span">Logout</span>
                     <div id="cart"><i class="fa-solid fa-cart-shopping main-nav-links"><span
                                 class="main-nav-links cart-span">Cart</span></i></div>
+                    <div id="cart"><i class="fa-regular fa-heart main-nav-links"><span
+                                class="main-nav-links cart-span">Wishlist</span></i></div>
                 </div>
             </div>
         </nav>
@@ -40,6 +47,14 @@
         <div class="card cart column al-center">
             <h3>Cart</h3>
             <div class="cart-list" id="cart-list">
+            </div>
+        </div>
+    </div>
+
+    <div class="hidden" id="wish-container">
+        <div class="card wish column al-center">
+            <h3>Wishlist</h3>
+            <div class="wish-list" id="wish-list">
             </div>
         </div>
     </div>

@@ -132,7 +132,7 @@ h4{
 
 /* cart */
 
-.cart{
+.cart, .wish{
     width: 200px;
     height: 35vw;
     z-index: 9;

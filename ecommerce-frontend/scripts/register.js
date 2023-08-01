@@ -1,5 +1,6 @@
 
 
+
 const register_btn = document.getElementById('register-btn')
 const name_input = document.getElementById('name')
 const email_input = document.getElementById('email')
