@@ -20,5 +20,10 @@ Route::get('/products/{id?}', [AdminController::class, "getProducts"]);
 Route::get('/get_cart_items/{id}', [UserController::class, "getCartItems"]);
 Route::post('/add_to_cart', [UserController::class, "addToCart"]);
 Route::get('/delete_from_cart/{id}', [UserController::class, "deleteFromCart"]);
+
+Route::get('/get_wish_items/{id}', [UserController::class, "getFavorites"]);
+Route::post('/add_to_wishlist', [UserController::class, "addToWishlist"]);
+Route::get('/delete_from_wishlist/{id}', [UserController::class, "deleteFromWishlist"]);
+
 Route::get('/logout', [UserController::class], "logoutUser");
 

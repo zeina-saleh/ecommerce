@@ -1,10 +1,13 @@
 
 
-async function deleteFromCart(id, element) {
+async function deleteFromCart(id, element, ul) {
+    let list = ""
+    if(ul == "cart-list"){  list = "cart"}
+    else list = "wishlist"
     element.style.display = 'none'
     console.log(id)
     try {
-        const response = await fetch(`http://127.0.0.1:8000/api/delete_from_cart/${id}`)
+        const response = await fetch(`http://127.0.0.1:8000/api/delete_from_${list}/${id}`)
         const json = await response.json()
         return json
     } catch (e) {
@@ -23,12 +26,12 @@ function fillCart(items, list) {
 
         let cart_btn = document.getElementById(`min_btn${item.id}`)
         cart_btn.addEventListener('click', function () {
-            deleteFromCart(item.id, cart_item)
+            deleteFromCart(item.id, cart_item, list)
         })
     })
 }
 
-async function addToCart(item_id) {
+async function addToCart(item_id, list) {
     try {
         const user_id = localStorage.getItem('user_id')
         const product_id = item_id
@@ -42,7 +45,7 @@ async function addToCart(item_id) {
             body: formdata
         }
 
-        const response = await fetch('http://127.0.0.1:8000/api/add_to_cart', options)
+        const response = await fetch(`http://127.0.0.1:8000/api/add_to_${list}`, options)
         const json = response.json()
         console.log(json)
     }
@@ -62,7 +65,7 @@ function renderProducts(products) {
         <span id="title" class="product-title">${item.title}</span>
         <span id="price" class="products-price">${item.price}</span>
         <div class="flex gap20 al-center">
-            <i class="fa-regular fa-heart main-nav-links"></i>
+            <i class="fa-regular fa-heart main-nav-links" id="wish_btn${item.id}"></i>
             <button id="cart_btn${item.id}" class="btn">Add to Cart</button>
         </div></div>`;
         container.appendChild(product_div)
@@ -79,7 +82,12 @@ function renderProducts(products) {
 
         let cart_btn = document.getElementById(`cart_btn${item.id}`)
         cart_btn.addEventListener('click', function () {
-            addToCart(item.id)
+            addToCart(item.id, "cart")
+        })
+
+        let wish_btn = document.getElementById(`wish_btn${item.id}`)
+        wish_btn.addEventListener('click', function () {
+            addToCart(item.id, "wishlist")
         })
 
     })
@@ -120,7 +128,7 @@ window.onload = async () => {
         console.log('failed to fetch', e)
     }
 
-    // get cart items
+    // get wish items
     try {
         const response = await fetch(`http://127.0.0.1:8000/api/get_wish_items/${user_id}`)
         const json = await response.json()
@@ -136,6 +144,13 @@ window.onload = async () => {
     const cart_btn = document.getElementById('cart')
     cart_btn.addEventListener('click', async function () {
         const list = document.getElementById('cart-container')
+        list.classList.toggle("hidden")
+    })
+
+    // show wishlist
+    const favorite_btn = document.getElementById('wish')
+    favorite_btn.addEventListener('click', async function () {
+        const list = document.getElementById('wish-container')
         list.classList.toggle("hidden")
     })
 
